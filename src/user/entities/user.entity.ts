@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeRemove, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity("User")
 export class User {
     @PrimaryGeneratedColumn()
@@ -19,4 +19,19 @@ export class User {
     updated_at: Date;
     @Column("date",{name:"deleteAt",nullable:true})
     deleted_at: Date;
+
+
+    @BeforeInsert()
+    DateCreateAT(){
+        this.created_at= new Date()// date de systeme
+    }
+    @BeforeUpdate()
+    DateUpdateAT(){
+        this.updated_at= new Date()
+    }
+    @BeforeRemove()
+    DateDeleteAT(){
+        this.deleted_at= new Date()
+    }
 }
+
