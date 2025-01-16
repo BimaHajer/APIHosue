@@ -16,10 +16,8 @@ export class UserService {
   let user=this.userRepository.create(createUserDto)//create object 
   console.log("user",user.password)
   user.password= (await(await (this.hashPassword(user.password))).toString())// hash the password
-  console.log("user password",user.password)// console.log 
-  return this.userRepository.save(user)// save on database
-
-
+    console.log('user password', user.password); // console.log
+    return this.userRepository.save(user); // save on database
   }
   async hashPassword(password:string){
 const saltOrRounds = 15;
