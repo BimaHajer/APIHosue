@@ -12,30 +12,41 @@ export class UserService {
     private readonly userRepository:Repository<User>
     ){}
 
-  create(createUserDto: CreateUserDto) {
-  let user=this.userRepository.create(createUserDto)
-  user.password=(this.hashPassword(user.password)).toString()
+  async create(createUserDto: CreateUserDto) {
+  let user=this.userRepository.create(createUserDto)//create object 
+  console.log("user",user.password)
+  user.password= (await(await (this.hashPassword(user.password))).toString())// hash the password
+  console.log("user password",user.password)// console.log 
+  return this.userRepository.save(user)// save on database
+
 
   }
   async hashPassword(password:string){
-const saltOrRounds = 29;
-const hash = await bcrypt.hash(password, saltOrRounds);
+const saltOrRounds = 15;
+const hash = (await (bcrypt.hash(password, saltOrRounds))).toString();
+console.log("hash",hash)
 return hash
 }
   findAll() {
-    return `This action returns all user`;
+    return  this.userRepository.findAndCount()
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(idUser: number) {
+    return  this.userRepository.findOne({where:{id:idUser}})
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(idUser: number, updateUserDto: UpdateUserDto) {
+    console.log("updateUserDto service", updateUserDto)
+    let user= await this.userRepository.preload({
+      id:+idUser,
+      ...updateUserDto
+    })
+
+    return this.userRepository.save(user)
   }
 
   remove(id: number) {
-    return `This action removes a #${id} user`;
+    return this.userRepository.delete(id)
   }
 }
 
