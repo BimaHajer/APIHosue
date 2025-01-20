@@ -3,14 +3,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
-import {TypeOrmModule} from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ClientModule } from './client/client.module';
 import { LessorModule } from './lessor/lessor.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
     useFactory: () => ({
-      type: 'postgres',
+        type: 'postgres',
       host: 'localhost',
       port: 5432,
       username: 'postgres',
@@ -22,7 +23,11 @@ import { LessorModule } from './lessor/lessor.module';
 
         
     }),
-  }),ConfigModule.forRoot(),UserModule, LessorModule],
+    ConfigModule.forRoot(),
+    UserModule,
+    ClientModule,
+    LessorModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
   
