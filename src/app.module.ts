@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClientModule } from './client/client.module';
 import { LessorModule } from './lessor/lessor.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -22,11 +23,12 @@ import { LessorModule } from './lessor/lessor.module';
         //  synchronize: false
 
         
-    }),
+    })}),
     ConfigModule.forRoot(),
     UserModule,
     ClientModule,
     LessorModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
