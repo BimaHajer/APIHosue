@@ -1,15 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto, LoginUser } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { response } from 'express';
+import { JwtService } from '@nestjs/jwt';
+import { jwtConstants } from './constants';
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private readonly userRepository:Repository<User>
+    private readonly userRepository:Repository<User>,
+    private jwtService: JwtService
     ){}
 
   async create(createUserDto: CreateUserDto) {
@@ -25,12 +29,17 @@ const hash = (await (bcrypt.hash(password, saltOrRounds))).toString();
 console.log("hash",hash)
 return hash
 }
+
+
   findAll() {
     return  this.userRepository.findAndCount()
   }
 
   findOne(idUser: number) {
     return  this.userRepository.findOne({where:{id:idUser}})
+  }
+  findByEmail(email: string) {
+    return this.userRepository.findOne({where:{email:email}})
   }
 
   async update(idUser: number, updateUserDto: UpdateUserDto) {
