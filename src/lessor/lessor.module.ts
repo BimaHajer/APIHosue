@@ -7,6 +7,8 @@ import { Lessor } from './entities/lessor.entity';
 @Module({
   controllers: [LessorController],
   providers: [LessorService],
+   exports: [LessorService],
   imports:[TypeOrmModule.forFeature([Lessor])]
 })
 export class LessorModule {}
+
