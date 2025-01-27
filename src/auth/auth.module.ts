@@ -5,11 +5,12 @@ import { UserModule } from 'src/user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { LessorModule } from 'src/lessor/lessor.module';
+import { ClientModule } from 'src/client/client.module';
 
 @Module({
   controllers: [AuthController],
   providers: [AuthService],
-  imports: [UserModule,LessorModule, 
+  imports: [UserModule, ClientModule,LessorModule,
       JwtModule.register({
         global: true,
         secret: jwtConstants.secret,

@@ -32,12 +32,16 @@ export class ClientService {
 
   // Récupérer tous les clients
   findAll() {
+    console.log("client",this.clientRepository.findAndCount())
     return this.clientRepository.findAndCount(); // Retourne une liste paginée
   }
 
   // Récupérer un client par ID
   findOne(id: number) {
     return this.clientRepository.findOne({ where: { id } });
+  }
+  findByEmail(email:string){
+    return this.clientRepository.findOne({where:{email:email}})
   }
 
   // Mettre à jour un client

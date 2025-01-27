@@ -37,6 +37,9 @@ export class LessorService {
    findOne(idLessor: number) {
      return  this.lessorRepository.findOne({where:{id:idLessor}})
    }
+   findByEmail(email:string){
+    return this.lessorRepository.findOne({where:{email:email}})
+   }
  
    async update(idLessor: number, updateLessorDto: UpdateLessorDto) {
      console.log("updateLessorDto service", updateLessorDto)

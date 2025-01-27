@@ -1,7 +1,7 @@
+
 import { Body, Controller, HttpStatus, Post ,Res} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginUser } from 'src/user/dto/create-user.dto';
-import { LoginLessor } from 'src/lessor/dto/create-lessor.dto';
 
 @Controller('auth')
 export class AuthController 
@@ -14,8 +14,14 @@ export class AuthController
        return this.authService.userLogin(loginUser);
      }
      @Post("login-lessor")
-     lessorLogin(@Body() loginLessor: LoginLessor) {
+     lessorLogin(@Body() loginLessor: LoginUser) {
       console.log(" controller",loginLessor)
        return this.authService.lessorLogin(loginLessor);
      }
+     @Post("login-client")
+     LoginClient(@Body() loginClient: LoginUser) {
+      console.log(" controller",loginClient)
+       return this.authService.clientLogin(loginClient);
+     }
 }
+
