@@ -8,6 +8,7 @@ import { ClientModule } from './client/client.module';
 import { LessorModule } from './lessor/lessor.module';
 import { AuthModule } from './auth/auth.module';
 import { ContactModule } from './contact/contact.module';
+import { CharacteristicModule } from './characteristic/characteristic.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { ContactModule } from './contact/contact.module';
     LessorModule,
     AuthModule,
     ContactModule,
+    CharacteristicModule,
   ],
   controllers: [AppController],
   providers: [AppService],
