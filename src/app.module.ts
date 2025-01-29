@@ -8,6 +8,7 @@ import { ClientModule } from './client/client.module';
 import { LessorModule } from './lessor/lessor.module';
 import { AuthModule } from './auth/auth.module';
 import { ContactModule } from './contact/contact.module';
+import { EquipementModule } from './equipement/equipement.module';
 
 @Module({
   imports: [
@@ -31,6 +32,8 @@ import { ContactModule } from './contact/contact.module';
     LessorModule,
     AuthModule,
     ContactModule,
+    EquipementModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],
