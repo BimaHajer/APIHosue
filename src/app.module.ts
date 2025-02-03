@@ -8,6 +8,7 @@ import { ClientModule } from './client/client.module';
 import { LessorModule } from './lessor/lessor.module';
 import { AuthModule } from './auth/auth.module';
 import { ContactModule } from './contact/contact.module';
+import { EquipementModule } from './equipement/equipement.module';
 import { CharacteristicModule } from './characteristic/characteristic.module';
 
 @Module({
@@ -32,6 +33,8 @@ import { CharacteristicModule } from './characteristic/characteristic.module';
     LessorModule,
     AuthModule,
     ContactModule,
+    EquipementModule,
+    
     CharacteristicModule,
   ],
   controllers: [AppController],
