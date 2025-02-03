@@ -9,6 +9,7 @@ import { LessorModule } from './lessor/lessor.module';
 import { AuthModule } from './auth/auth.module';
 import { ContactModule } from './contact/contact.module';
 import { EquipementModule } from './equipement/equipement.module';
+import { CharacteristicModule } from './characteristic/characteristic.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { EquipementModule } from './equipement/equipement.module';
     ContactModule,
     EquipementModule,
     
+    CharacteristicModule,
   ],
   controllers: [AppController],
   providers: [AppService],
