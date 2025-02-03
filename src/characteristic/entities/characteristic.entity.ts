@@ -1,13 +1,21 @@
-import { BeforeInsert, BeforeRemove, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert,  BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity("Characteristic")
 
 export class Characteristic {
     @PrimaryGeneratedColumn()
     id: number;
-    @Column("text",{name:"house_id",nullable:true})
-    house_id: string;
     @Column("text",{name:"Key",nullable:true})
     Key: string;
+    @Column("text",{name:"title",nullable:true})
+    title:string;
+    @Column("text",{name:"description",nullable:true})
+    description:string
+    @Column("text",{name:"isvaible",nullable:true})
+    isvaible:boolean
+    @Column("text",{name:"isdelete",nullable:true})
+    isdelete:boolean
+    @Column("text",{name:"deleteAT",nullable:true})
+    deleteAT: Date;
     @Column("text",{name:"value",nullable:true})
     value: string;
     @Column("date",{name:"createAt",nullable:true})
