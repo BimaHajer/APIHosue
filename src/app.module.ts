@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { ContactModule } from './contact/contact.module';
 import { EquipementModule } from './equipement/equipement.module';
 import { CharacteristicModule } from './characteristic/characteristic.module';
+import { TypeHouseModule } from './type_house/type_house.module';
 
 @Module({
   imports: [
@@ -36,6 +37,8 @@ import { CharacteristicModule } from './characteristic/characteristic.module';
     EquipementModule,
     
     CharacteristicModule,
+    
+    TypeHouseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
