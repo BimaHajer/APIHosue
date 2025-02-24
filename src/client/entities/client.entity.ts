@@ -11,6 +11,18 @@ export class Client {
     email: string;
     @Column("text",{name:"password",nullable:true})
     password: string;
+    @Column("text",{name:"password confirme",nullable:true})
+    password_confirme: string;
+    @Column("text",{name:"saltround",nullable:true})
+    saltround: number;
+    @Column("text",{name:"adresse",nullable:true})
+    adresse: string;
+    @Column("text",{name:"city",nullable:true})
+    city: string;
+    @Column("text",{name:"codePostal",nullable:true})
+    codePostal: string;
+    @Column("text",{name:"telephone",nullable:true})
+    telephone: string;
     @Column("text",{name:"role",nullable:true})
     created_at: Date;
     @Column("date",{name:"updateAt",nullable:true})

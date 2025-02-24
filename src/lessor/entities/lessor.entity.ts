@@ -11,6 +11,20 @@ export class Lessor {
     email: string;
     @Column("text",{name:"password",nullable:true})
     password: string;
+    @Column("text",{name:"password confirme",nullable:true})
+    password_confirme: string;
+    @Column("text",{name:"saltround",nullable:true})
+    saltround: number;
+    @Column("text",{name:"adresse",nullable:true})
+    adresse: string;
+    @Column("text",{name:"city",nullable:true})
+    city: string;
+    @Column("text",{name:"state",nullable:true})
+    state: string;
+    @Column("text",{name:"codePostal",nullable:true})
+    codePostal: number;
+    @Column("text",{name:"telephone",nullable:true})
+    telephone: number;
     @Column("date",{name:"createAt",nullable:true})
     created_at: Date;
     @Column("date",{name:"updateAt",nullable:true})
