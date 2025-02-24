@@ -31,4 +31,9 @@ export class LessorController {
   remove(@Param('id') id: string) {
     return this.lessorService.remove(+id);
   }
+  @Post('delete-multiple-clients')
+  removeMultiple(@Body()lessorList:any){
+    console.log("listUser",lessorList)
+    this.lessorService.removeMultiple(lessorList["ids"])
+  }
 }

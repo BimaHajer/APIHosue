@@ -51,6 +51,25 @@ export class LessorService {
    remove(id: number) {
      return this.lessorRepository.delete(id)
    }
-   
+   async removeMultiple(toDelete: number[]) {   
+
+    let resultDelete: boolean = null
+    let resultDisable: boolean = null
+    const allIntegers = toDelete.every(item => Number.isInteger(item));
+if (!allIntegers) {
+    console.log('Invalid data in toDelete array');
+    // Handle the error appropriately
+    return;
+}
+
+    if (toDelete.length != 0) {
+      if (await this.lessorRepository.delete(toDelete)) {
+        resultDelete = true
+      } else
+        resultDelete = false
+        console.log("unitsResposity",this.lessorRepository)
+    }
+
+  return true 
  }
- 
+}
