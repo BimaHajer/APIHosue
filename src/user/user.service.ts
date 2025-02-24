@@ -55,6 +55,25 @@ return hash
   remove(id: number) {
     return this.userRepository.delete(id)
   }
+  async removeMultiple(toDelete: number[]) {   
+
+    let resultDelete: boolean = null
+    let resultDisable: boolean = null
+    const allIntegers = toDelete.every(item => Number.isInteger(item));
+if (!allIntegers) {
+    // Handle the error appropriately
+    return;
+}
+
+    if (toDelete.length != 0) {
+      if (await this.userRepository.delete(toDelete)) {
+        resultDelete = true
+      } else
+        resultDelete = false
+    }
+
+  return true 
+  }
 }
 
 

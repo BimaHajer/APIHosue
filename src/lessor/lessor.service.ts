@@ -51,5 +51,6 @@ export class LessorService {
    remove(id: number) {
      return this.lessorRepository.delete(id)
    }
+   
  }
  

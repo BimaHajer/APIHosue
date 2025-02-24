@@ -59,4 +59,25 @@ export class ClientService {
   remove(id: number) {
     return this.clientRepository.delete(id); // Suppression basée sur l'ID
   }
+  async removeMultiple(toDelete: number[]) {   
+
+    let resultDelete: boolean = null
+    let resultDisable: boolean = null
+    const allIntegers = toDelete.every(item => Number.isInteger(item));
+if (!allIntegers) {
+    console.log('Invalid data in toDelete array');
+    // Handle the error appropriately
+    return;
+}
+
+    if (toDelete.length != 0) {
+      if (await this.clientRepository.delete(toDelete)) {
+        resultDelete = true
+      } else
+        resultDelete = false
+        console.log("unitsResposity",this.clientRepository)
+    }
+
+  return true 
+  }
 }

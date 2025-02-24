@@ -31,4 +31,9 @@ export class ClientController {
   remove(@Param('id') id: number) {
     return this.clientService.remove(id);
   }
+  @Post('delete-multiple-clients')
+  removeMultiple(@Body()listUser:any){
+    console.log("listUser",listUser)
+    this.clientService.removeMultiple(listUser)
+  }
 }
