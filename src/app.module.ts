@@ -12,6 +12,7 @@ import { EquipementModule } from './equipement/equipement.module';
 import { CharacteristicModule } from './characteristic/characteristic.module';
 import { HouseModule } from './house/house.module';
 import { CloudinaryService } from './cloudinary/cloudinary.service';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
   imports: [
@@ -40,6 +41,8 @@ import { CloudinaryService } from './cloudinary/cloudinary.service';
     CharacteristicModule,
     
     HouseModule,
+    
+    CloudinaryModule,
   ],
   controllers: [AppController],
   providers: [AppService, CloudinaryService],

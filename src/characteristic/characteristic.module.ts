@@ -5,7 +5,7 @@ import { Characteristic } from './entities/characteristic.entity';
 import { TypeOrmModule } from '@nestjs/typeorm/dist/typeorm.module';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from 'src/user/constants';
-
+import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
 @Module({
   controllers: [CharacteristicController],
   providers: [CharacteristicService],
@@ -14,6 +14,6 @@ import { jwtConstants } from 'src/user/constants';
       global: true,
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '600000000000000000s' },
-    }),],
+    }),CloudinaryModule],
 })
 export class CharacteristicModule {}
