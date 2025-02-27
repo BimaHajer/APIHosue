@@ -9,6 +9,7 @@ import { UserService } from 'src/user/user.service';
 const bcrypt=require('bcrypt')
 
 @Injectable()
+
 export class AuthService {
   
     constructor(private userService:UserService ,  private jwtService:JwtService, private lessorService:LessorService) {}

@@ -1,4 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseInterceptors,
+  UploadedFile,
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { EquipementService } from './equipement.service';
 import { CreateEquipementDto } from './dto/create-equipement.dto';
 import { UpdateEquipementDto } from './dto/update-equipement.dto';
@@ -8,27 +19,45 @@ export class EquipementController {
   constructor(private readonly equipementService: EquipementService) {}
 
   @Post('create-equipement')
-  create(@Body() createEquipementDto: CreateEquipementDto) {
-    return this.equipementService.create(createEquipementDto);
+  @UseInterceptors(FileInterceptor('image')) // Intercepte le fichier image
+  create(
+    @Body() createEquipementDto: CreateEquipementDto,
+    @UploadedFile() file: Express.Multer.File, // Récupère le fichier
+  ) {
+    return this.equipementService.create(createEquipementDto, file);
   }
 
   @Get('list-equipement')
-  findAll() {
-    return this.equipementService.findAll();
-  }
+findAll() {
+  return this.equipementService.findAll();
+}
 
   @Get('detail-equipement/:id')
   findOne(@Param('id') id: number) {
-    return this.equipementService.findOne(id); 
+    return this.equipementService.findOne(id);
   }
+
+ 
+
+
 
   @Patch('update-equipement/:id')
-  update(@Param('id') id: number, @Body() updateEquipementDto: UpdateEquipementDto) {
-    return this.equipementService.update(id, updateEquipementDto); 
-  }
+@UseInterceptors(FileInterceptor('image')) // Intercepte le fichier image
+async update(
+  @Param('id') id: number,
+  @Body() updateEquipementDto: UpdateEquipementDto,
+  @UploadedFile() file?: Express.Multer.File, // Fichier image optionnel
+) {
+  return this.equipementService.update(id, updateEquipementDto, file);
+}
 
-  @Delete('delete-equipement/:id')
-  delete(@Param('id') id: number) {
-    return this.equipementService.delete(id); 
-  }
+@Delete('delete-equipement/:id')
+remove(@Param('id') id: number) {
+  return this.equipementService.remove(+id);
+}
+
+@Post('delete-multiple')
+removeMultiple(@Body() EquipementList: any) {
+  return this.equipementService.removeMultiple(EquipementList.ids);
+}
 }

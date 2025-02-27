@@ -11,6 +11,7 @@ import { ContactModule } from './contact/contact.module';
 import { EquipementModule } from './equipement/equipement.module';
 import { CharacteristicModule } from './characteristic/characteristic.module';
 import { HouseModule } from './house/house.module';
+import { CloudinaryService } from './cloudinary/cloudinary.service';
 
 @Module({
   imports: [
@@ -41,7 +42,7 @@ import { HouseModule } from './house/house.module';
     HouseModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, CloudinaryService],
   
 })
 export class AppModule {}
