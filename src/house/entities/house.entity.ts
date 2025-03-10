@@ -1,4 +1,7 @@
-import { BeforeInsert, BeforeRemove, BeforeUpdate, Column, Decimal128, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Characteristic } from "src/characteristic/entities/characteristic.entity";
+import { Equipement } from "src/equipement/entities/equipement.entity";
+import { Picture } from "src/pictures/entities/picture.entity";
+import { BeforeInsert, BeforeRemove, BeforeUpdate, Column, Decimal128, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
     
 @Entity("house")
     
@@ -31,7 +34,12 @@ import { BeforeInsert, BeforeRemove, BeforeUpdate, Column, Decimal128, Entity, P
             deleted_at: Date;
             @Column("date",{name:"deleted_by",nullable:true})
             deleted_by: number;
-        
+            @OneToMany(() => Equipement, (equipment) => equipment.houseId, { cascade: true })
+            equipments: Equipement[];
+            @OneToMany(() => Characteristic, (characteristic) => characteristic.houseId, { cascade: true })
+            characterisrtics: Characteristic[];
+            @OneToMany(() => Picture, (picture) => picture.houseId, { cascade: true })
+            pictures: Picture[];
         
         
         }

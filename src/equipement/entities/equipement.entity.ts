@@ -1,11 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { House } from 'src/house/entities/house.entity';
+import { Column, Entity, PrimaryGeneratedColumn, BeforeInsert, BeforeUpdate, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity('equipement')
 export class Equipement {
   @PrimaryGeneratedColumn()
   id: number;
-     @PrimaryGeneratedColumn()
-        id: number;
         @Column("text",{name:"title",nullable:true})
         @Column("text",{name:"condition",nullable:true})
         condition: string;
@@ -32,6 +31,9 @@ export class Equipement {
         deleted_at: Date;
         @Column("date",{name:"deleted_by",nullable:true})
         deleted_by: number;
+        @ManyToOne(() => House, (house) => house.equipments, { onDelete: 'CASCADE' })
+        @JoinColumn({ name: 'houseId' })
+        houseId: number;
         @BeforeInsert()
         setCreateDate() {
           this.created_at = new Date();

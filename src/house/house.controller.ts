@@ -32,4 +32,8 @@ export class HouseController {
   remove(@Param('id') id: string) {
     return this.houseService.delete(+id);
   }
+  @Post('delete-multiple')
+removeMultiple(@Body() EquipementList: any) {
+  return this.houseService.removeMultiple(EquipementList.ids);
+}
 }
