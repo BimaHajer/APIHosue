@@ -18,7 +18,7 @@ export class HouseService {
       return this.houseRepository.save(house)  }
   
     async findAll() {
-      return  this.houseRepository.findAndCount();
+      return  this.houseRepository.findAndCount({relations: ['equipments', 'characterisrtics']});
     }
   
     async findOne(id: number){
@@ -37,6 +37,26 @@ export class HouseService {
     }
       
    
+    async removeMultiple(toDelete: number[]) {   
     
+      let resultDelete: boolean = null
+      let resultDisable: boolean = null
+      const allIntegers = toDelete.every(item => Number.isInteger(item));
+    if (!allIntegers) {
+      console.log('Invalid data in toDelete array');
+      // Handle the error appropriately
+      return;
+    }
+    
+      if (toDelete.length != 0) {
+        if (await this.houseRepository.delete(toDelete)) {
+          resultDelete = true
+        } else
+          resultDelete = false
+          console.log("unitsResposity",this.houseRepository)
+      }
+    
+    return true 
+    }
   }
   

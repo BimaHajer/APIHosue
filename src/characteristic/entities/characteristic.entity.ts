@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { House } from 'src/house/entities/house.entity';
+import { Column, Entity, PrimaryGeneratedColumn, BeforeInsert, BeforeUpdate, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity('characteristic')
 export class Characteristic {
@@ -43,6 +44,9 @@ export class Characteristic {
 
   @Column('date', { name: 'deleted_at', nullable: true })
   deleted_at: Date;
+   @ManyToOne(() => House, (house) => house.characterisrtics, { onDelete: 'CASCADE' })
+          @JoinColumn({ name: 'houseId' })
+          houseId: number;
 
   @Column('int', { name: 'deleted_by', nullable: true })
   deleted_by: number;
